@@ -1,0 +1,24 @@
+body{
+    margin:0;
+}
+#brand{
+    font-family: 'Pacifico', cursive;
+}
+
+#weatherView{
+    background:pink;
+}
+
+#cityList{
+    background:orange;
+}
+
+#searchBar{
+    margin: 25px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#searchButton{
+    margin-left:0;
+}
