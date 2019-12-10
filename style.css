@@ -5,13 +5,15 @@ body{
 #header{
     background: #17252A;
 }
+
+#title{
+    font-size: 60px;
+    font-family: fantasy;
+}
 #brand{
     font-family: 'Pacifico', cursive;
 }
 
-#weatherView{
-    background:#2b7a78;
-}
 
 #cityListContainer{
     background: #Def2f1;
@@ -27,6 +29,9 @@ body{
 #search{
     margin:25px;
 }
+#cityTitle{
+    font-family: 'Pacifico', cursive;
+}
 
 #searchButton{
     margin-left:0;
@@ -34,6 +39,7 @@ body{
 }
 #searchButton:active{
     border:#2b7a78 solid .5px;
+
 }
 
 .cityList{
@@ -46,9 +52,22 @@ body{
 #currentCityInfo{
     padding:25px;
     background: white;
+    border: .5pt #17252A solid;
 }
 
 #fiveDayForecast{
-    background:#FEFFFF;
+    background:#3aafa9;
     padding:25px;
+    
+}
+
+#cityHead{
+    margin-bottom: 25px;
+}
+
+#fork{
+    margin: 15px;
+    padding: 25px;
+    font-family: 'Pacifico', cursive;
+    background: #dedede;
 }

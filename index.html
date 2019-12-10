@@ -25,7 +25,9 @@
         </header>
         <div class="container-fluid">
             <div class="row">
+
                 <section class="container col-4" id="cityListContainer">
+
                     <form id="search" class="row">
                         <input type="text" class="col-8" placeholder="Search for a city..." id = "searchBar">
                         <i class="fa fa-search col fa-2x col text-center" id="searchButton"></i>                    
@@ -34,9 +36,21 @@
                     <!--div class="cityList" id="startList"></div-->
                 </section>
 
-                <section class="col-8" id="weatherView"> 
-                    <div class="row" id="currentCityInfo"> current City </div>
-                    <div class="row" id="fiveDayForecast">holder</div>
+                <section class="col-8" id="weatherView" class="container"> 
+
+                    <div id="currentCityInfo">
+                        <h1 id="cityTitle"></h1>
+                        <h4 id="mainTemp"></h4>
+                        <h4 id="mainHumidity"></h4>
+                        <h4 id="mainWS"></h4>
+                        <h4 id="uvIndex"></h4>
+                    </div>
+
+                
+
+                    <div class="row" id="fiveDayForecast">
+                        
+                    </div>
                 </section>
             </div>
         </div>   
