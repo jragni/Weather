@@ -71,3 +71,10 @@ body{
     font-family: 'Pacifico', cursive;
     background: #dedede;
 }
+
+.items{
+    padding: 10px;
+    font-family: 'Pacifico', cursive;
+    border: .5pt #17252A solid;
+    text-align: center;
+}
