@@ -1,123 +1,124 @@
 
+
+// if searchObj is not null
+
 var searchList = [];
 var searchObj = {searchList}
-
+if(JSON.parse(localStorage.getItem("city"))!= null)
+    {
+        searchObj = JSON.parse(localStorage.getItem("city"));
+        searchList = searchObj.searchList;
+    }
 
 // wait for document to be loaded to run jQuery
 $(document).ready(function()
 {
 
-        // on startup,
-            // get the user's geolocation
-            // use latitude and longitude to make ajax call for their area
-            // create divs from the data and append to area
-            navigator.geolocation.getCurrentPosition(function(position)
+//--------------- on startup--------------------
+         
+    navigator.geolocation.getCurrentPosition(function(position)
                 {
                     var currentLatitude = position.coords.latitude;
                     var currentLongitude = position.coords.longitude;
                     currentLocationForecast(currentLatitude,currentLongitude);
-                });
+    });
+//---------------End on startup-----------------
 
 
-        // if localstorage is not null,
-                // create divs for list 
         
-        // on-lick of button
-            //get value of search bar
-            // append search bar value to list below the search bar
-            // create div for ^ 
-            // update the forecast view, create appropriate divs
-            $("#searchButton").on("click",function (event)
-            {   
-                event.preventDefault();
-                var city = $("#searchBar").val()
+//------------- on-lick Search button-------------
+    $("#searchButton").on("click",function (event)
+        {   
+            event.preventDefault();
+            var city = $("#searchBar").val()
 
-                $("#startList").empty();
+            $("#startList").empty();
                 //////////// add city to list, 
-                searchList.push(city);
-                for(var i=0; i<searchList.length; i++)
-            {
-                var obj = $("<div id='stuff'>").html(searchList[i]).appendTo("#startList");
-            }
+            searchList.push(city);
+
+            localStorage.setItem( 'city',JSON.stringify(searchObj))
+            for(var i=searchList.length;  i>= 0;i--)
+                {
+                    $("<div id='"+city+"'>").html(searchList[i]).appendTo("#startList");
+                }
                 /////////// 
 
-                var api = 'c90685aae6e4aa37f3e7a8f1e73df2e2';
-                var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
-                $.ajax(
+            var api = 'c90685aae6e4aa37f3e7a8f1e73df2e2';
+            var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
+            $.ajax(
+                {
+                method:"get",
+                url:queryURL}).done(function(data)
                     {
-                        method:"get",
-                        url:queryURL
-                    }).done(function(data)
-                        {
-                            var temperature= data.list[0].main.temp;
-                            temperature = Math.ceil(((temperature-273.15) * 9 / 5 ) + 32);
-                            var Humidity = data.list[0].main.humidity; 
-                            var windSpeed = data.list[0].wind.speed;
-                            var cityName = data.city.name;
-                            var iconWeather = data.list[0].weather[0].icon 
-                            var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
-                            var rawDate = data.list[0].dt_txt;
-                            formattedDate = dateFormatter(rawDate)
-                            // City Title
-                            var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                            $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
-                             // Temperature
-                            $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
+                        var temperature= data.list[0].main.temp;
+                        temperature = Math.ceil(((temperature-273.15) * 9 / 5 ) + 32);
+                        var Humidity = data.list[0].main.humidity; 
+                        var windSpeed = data.list[0].wind.speed;
+                        var cityName = data.city.name;
+                        var iconWeather = data.list[0].weather[0].icon 
+                        var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                        var rawDate = data.list[0].dt_txt;
+                        var formattedDate = dateFormatter(rawDate)
+                        // City Title
+                        var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
+                        $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
+                         // Temperature
+                        $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
         
-                            // Humidity 
-                            $("#mainHumidity").html("Humidity: " + Humidity + '%');
-                            // Wind Speed
-                            $("#mainWS").html("Wind Speed: " + windSpeed + 'meter/sec')
+                        // Humidity 
+                        $("#mainHumidity").html("Humidity: " + Humidity + '%');
+                        // Wind Speed
+                        $("#mainWS").html("Wind Speed: " + windSpeed + 'meter/sec')
         
-                            // remove previous
-                            $("#fiveDayForecast").empty();
-                            // Make the next 5 day forecast
-                            for(var i = 1; i < 6; i++)
-                                {
-                                    var temperature= data.list[i].main.temp;
-                                    temperature = Math.ceil(((temperature-273.15) * 9 / 5 ) + 32);
-                                    var Humidity = data.list[i].main.humidity; 
-                                    var rawDate = data.list[i].dt_txt;
-                                    var iconWeather = data.list[i].weather[0].icon 
-                                    var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
-                                    formattedDate = dateFormatter(rawDate);
+                       // remove previous
+                        $("#fiveDayForecast").empty();
+                        // Make the next 5 day forecast
+                        for(var i = 1; i < 40; i+=8)
+                           {
+                                var temperature= data.list[i].main.temp;
+                                temperature = Math.ceil(((temperature-273.15) * 9 / 5 ) + 32);
+                                var Humidity = data.list[i].main.humidity; 
+                                var rawDate = data.list[i].dt_txt;
+                                var iconWeather = data.list[i].weather[0].icon 
+                                var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                                var formattedDate = dateFormatter(rawDate);
         
-                                    var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
-                                    margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px;'}).appendTo("#fiveDayForecast");
-                                    $("<div>").html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(divObj);
-                                    $("<div>").html( "Temperature: " + temperature + String.fromCharCode(176)+'F').appendTo(divObj);
-                                    $("<div>").html("Humidity: " + Humidity + '%').appendTo(divObj);
+                                var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
+                                margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px;'}).appendTo("#fiveDayForecast");
+                                $("<div>").html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(divObj);
+                                $("<div>").html( "Temperature: " + temperature + String.fromCharCode(176)+'F').appendTo(divObj);
+                                $("<div>").html("Humidity: " + Humidity + '%').appendTo(divObj);
                                    
-                                }
+                            }
 
-
-                        }); 
-        
-        
-                // UV api
+                    }); 
+                    
                 var queryURL = 'http://api.openweathermap.org/data/2.5/uvi?q='+city +'&APPID='+api;
-                $.ajax(
-                    {
-                        method:"get",
-                        url:queryURL
-                    }).done(function(data)
+                $.ajax({
+                        method:"get",   
+                        url:queryURL}).done(function(data)
                         {
                             var uvIndex = data.value;
-                            $("#uvIndex").html("UV Index: " + uvIndex);
-                        
+                            $("#uvIndex").html("UV Index: " + uvIndex);            
                         });
+        });
+//--------------End ON-CLICK Search-------------------- 
         
-            });
-            
-        // on click of city div
-            // update forecast event to that city
-            
-        // save all this stuff to local storage.
+//------- on cityfrom list click --------------
+
+//------- End on city from list click
         
 });
 
+
+
+//--------------- Functions ----------------
 function currentLocationForecast(lat,long)
     {   
+        for(var i=searchList.length;  i>= 0;i--)
+                {
+                    $("<div id='cityListed'>").html(searchList[i]).appendTo("#startList");
+                }
 
         // Latitude
         // Longitude   
@@ -138,7 +139,7 @@ function currentLocationForecast(lat,long)
                     var iconWeather = data.list[0].weather[0].icon 
                     var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
                     var rawDate = data.list[0].dt_txt;
-                    formattedDate = dateFormatter(rawDate)
+                    var formattedDate = dateFormatter(rawDate)
                     // City Title
                     var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
                     $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
@@ -149,10 +150,9 @@ function currentLocationForecast(lat,long)
                     $("#mainHumidity").html("Humidity: " + Humidity + '%');
                     // Wind Speed
                     $("#mainWS").html("Wind Speed: " + windSpeed + 'meter/sec')
-
-
+                    console.log(data);
                     // Make the next 5 day forecast
-                    for(var i = 1; i < 6; i++)
+                    for(var i = 1; i < 40; i+=8)
                         {
                             var temperature= data.list[i].main.temp;
                             temperature = Math.ceil(((temperature-273.15) * 9 / 5 ) + 32);
@@ -160,8 +160,10 @@ function currentLocationForecast(lat,long)
                             var rawDate = data.list[i].dt_txt;
                             var iconWeather = data.list[i].weather[0].icon 
                             var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
-                            formattedDate = dateFormatter(rawDate);
+                            var rawDate = data.list[i].dt_txt;
 
+                            var formattedDate = dateFormatter(rawDate);
+                            console.log(formattedDate);
                             var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
                             margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px;'}).appendTo("#fiveDayForecast");
                             $("<div>").html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(divObj);
@@ -186,11 +188,6 @@ function currentLocationForecast(lat,long)
                 });
 
     };
-
-
-
-
-
 
 function dateFormatter(dateString)
     {   
