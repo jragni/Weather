@@ -63,7 +63,7 @@ $(document).ready(function(){
                         var formattedDate = dateFormatter(rawDate)
                         // City Title
                         var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                        $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
+                        $('<div>').html("<img height='100px' width='100px' src="+ imgURL+'>').appendTo(obj);
                         // Temperature
                         $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')        
                         // Humidity 
@@ -135,7 +135,7 @@ $(document).ready(function(){
                             var formattedDate = dateFormatter(rawDate)
                             // City Title
                             var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                            $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
+                            $('<div>').html("<img height='100px' width='100px' src="+ imgURL+'>').appendTo(obj);
                             // Temperature
                             $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
             
@@ -208,7 +208,7 @@ function currentLocationForecast(lat,long){
                 var formattedDate = dateFormatter(rawDate)
                 // City Title
                 var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
+                $('<div>').html("<img height='100px' width='100px' src="+ imgURL+'>').appendTo(obj);
                 // Temperature
                 $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
                 // Humidity 
