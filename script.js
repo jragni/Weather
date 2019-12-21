@@ -228,7 +228,7 @@ function currentLocationForecast(lat,long){
                         var formattedDate = dateFormatter(rawDate);
                         //console.log(formattedDate);
                         var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
-                        margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px; fontSize:20px;'}).appendTo("#fiveDayForecast");
+                        margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px; fontSize:15px;'}).appendTo("#fiveDayForecast");
                         $("<div>").html("<img height='50px' width='45px' src="+ imgURL+'>').appendTo(divObj);
                         $("<div>").html( "Temperature: " + temperature + String.fromCharCode(176)+'F').appendTo(divObj);
                         $("<div>").html("Humidity: " + Humidity + '%').appendTo(divObj);
