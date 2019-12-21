@@ -203,7 +203,7 @@ function currentLocationForecast(lat,long){
                 var cityName = data.city.name;
                 searchList.push(cityName);
                 var iconWeather = data.list[0].weather[0].icon 
-                var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                 var rawDate = data.list[0].dt_txt;
                 var formattedDate = dateFormatter(rawDate)
                 // City Title
@@ -222,7 +222,7 @@ function currentLocationForecast(lat,long){
                     var Humidity = data.list[i].main.humidity; 
                         var rawDate = data.list[i].dt_txt;
                         var iconWeather = data.list[i].weather[0].icon 
-                        var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                        var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                         var rawDate = data.list[i].dt_txt;
 
                         var formattedDate = dateFormatter(rawDate);
@@ -238,7 +238,7 @@ function currentLocationForecast(lat,long){
 
 
             // UV api
-            var queryURL = 'http://api.openweathermap.org/data/2.5/uvi?lat='+lat+ '&lon='+ long+'&APPID='+api;
+            var queryURL = 'https://api.openweathermap.org/data/2.5/uvi?lat='+lat+ '&lon='+ long+'&APPID='+api;
         $.ajax({
                 method:"get",
                 url:queryURL
