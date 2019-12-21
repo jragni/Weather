@@ -19,6 +19,11 @@ body{
     background: #Def2f1;
     padding: 10px;
 }
+.cityList{
+    text-align:center;
+    padding:25px;
+    margin:10px;
+}
 
 #searchBar{
     margin-left:25px;
