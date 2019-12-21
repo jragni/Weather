@@ -63,7 +63,7 @@ $(document).ready(function(){
                         var formattedDate = dateFormatter(rawDate)
                         // City Title
                         var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                        $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
+                        $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
                         // Temperature
                         $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')        
                         // Humidity 
@@ -135,7 +135,7 @@ $(document).ready(function(){
                             var formattedDate = dateFormatter(rawDate)
                             // City Title
                             var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                            $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
+                            $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
                             // Temperature
                             $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
             
@@ -208,7 +208,7 @@ function currentLocationForecast(lat,long){
                 var formattedDate = dateFormatter(rawDate)
                 // City Title
                 var obj = $("#cityTitle").html(cityName + " ("+ formattedDate + ")" );
-                $('<div>').html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(obj);
+                $('<div>').html("<img height='150px' width='150px' src="+ imgURL+'>').appendTo(obj);
                 // Temperature
                 $("#mainTemp").html( "Temperature: " + temperature + String.fromCharCode(176)+'F')
                 // Humidity 
@@ -228,8 +228,8 @@ function currentLocationForecast(lat,long){
                         var formattedDate = dateFormatter(rawDate);
                         //console.log(formattedDate);
                         var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
-                        margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px;'}).appendTo("#fiveDayForecast");
-                        $("<div>").html("<img height='45px' width='45px' src="+ imgURL+'>').appendTo(divObj);
+                        margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px; fontSize:20px;'}).appendTo("#fiveDayForecast");
+                        $("<div>").html("<img height='50px' width='45px' src="+ imgURL+'>').appendTo(divObj);
                         $("<div>").html( "Temperature: " + temperature + String.fromCharCode(176)+'F').appendTo(divObj);
                         $("<div>").html("Humidity: " + Humidity + '%').appendTo(divObj);
                            
@@ -279,9 +279,9 @@ function removeEmptyString(array){
 
 function removeDoubles(array){
     for(let i = 0; i<array.length; i++){
-        var curr = array[i];
+        var curr = array[i].toUpperCase();
         for(let j = i + 1; j<array.length; j++ ){
-            var next = array[j];
+            var next = array[j].toUpperCase();
             if(next === curr){
                 array.splice(array.indexOf(curr),1);
                 i--;
