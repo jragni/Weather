@@ -47,7 +47,7 @@ $(document).ready(function(){
                     }
                 }
                 var api = 'c90685aae6e4aa37f3e7a8f1e73df2e2';
-                var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
+                var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
                 $.ajax({
                     method:"get",
                     url:queryURL})
@@ -58,7 +58,7 @@ $(document).ready(function(){
                         var windSpeed = data.list[0].wind.speed;
                         var cityName = data.city.name;
                         var iconWeather = data.list[0].weather[0].icon 
-                        var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                        var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                         var rawDate = data.list[0].dt_txt;
                         var formattedDate = dateFormatter(rawDate)
                         // City Title
@@ -80,7 +80,7 @@ $(document).ready(function(){
                             var Humidity = data.list[i].main.humidity; 
                             var rawDate = data.list[i].dt_txt;
                             var iconWeather = data.list[i].weather[0].icon 
-                            var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                            var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                             var formattedDate = dateFormatter(rawDate);
                             var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
                             margin:'15px',background:'#def2f1', padding:'15px', border:':#2b7a78 solid .5px;'}).appendTo("#fiveDayForecast");
@@ -90,7 +90,7 @@ $(document).ready(function(){
                         }
 
                     });      
-                    var queryURL = 'http://api.openweathermap.org/data/2.5/uvi?q='+city +'&APPID='+api;
+                    var queryURL = 'https://api.openweathermap.org/data/2.5/uvi?q='+city +'&APPID='+api;
                     $.ajax({
                             method:"get",   
                         url:queryURL}).done(function(data){
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
         if( flag == true){
             var api = 'c90685aae6e4aa37f3e7a8f1e73df2e2';
-                var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
+                var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID='+api;
                 $.ajax(
                     {
                     method:"get",
@@ -130,7 +130,7 @@ $(document).ready(function(){
                             var windSpeed = data.list[0].wind.speed;
                             var cityName = data.city.name;
                             var iconWeather = data.list[0].weather[0].icon 
-                            var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                            var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                             var rawDate = data.list[0].dt_txt;
                             var formattedDate = dateFormatter(rawDate)
                             // City Title
@@ -153,7 +153,7 @@ $(document).ready(function(){
                                     var Humidity = data.list[i].main.humidity; 
                                     var rawDate = data.list[i].dt_txt;
                                     var iconWeather = data.list[i].weather[0].icon 
-                                    var imgURL = 'http://openweathermap.org/img/wn/'+ iconWeather +'.png'
+                                    var imgURL = 'https://openweathermap.org/img/wn/'+ iconWeather +'.png'
                                     var formattedDate = dateFormatter(rawDate);
             
                                     var divObj = $("<div class='col fork'>").html("<h5>"+formattedDate+"</h5>").css({ fontFamily:"'Pacifico', cursive",
@@ -191,7 +191,7 @@ function currentLocationForecast(lat,long){
         // Longitude
         console.log(searchList);   
     var api = 'c90685aae6e4aa37f3e7a8f1e73df2e2';
-    var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?lat='+lat+ '&lon='+ long+'&APPID='+api;
+    var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+ '&lon='+ long+'&APPID='+api;
     $.ajax({
                 method:"get",
                 url:queryURL
